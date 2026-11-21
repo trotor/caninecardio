@@ -37,7 +37,7 @@ The app records and exports raw signals first. Before any heartbeat detection is
 - Optional: [XcodeGen](https://github.com/yonaskolb/XcodeGen) to regenerate the project from `project.yml`.
 - Optional, for offline analysis: Python 3.10+ with NumPy, SciPy and Matplotlib.
 
-Continuous integration: `.github/workflows/ci.yml` runs the library tests, builds the app unsigned for the Simulator, and smoke-tests the Python script. The workflow has not yet been run on GitHub.
+Continuous integration: `.github/workflows/ci.yml` runs the library tests, builds the app unsigned for the Simulator, and smoke-tests the Python script. It runs on GitHub-hosted macOS runners (currently Xcode 26.6), so the code is also checked with an older compiler than the Xcode 27.2 used for development.
 
 ## Build and install
 
