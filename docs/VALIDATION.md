@@ -83,3 +83,15 @@ If no recording shows this, the outcome is reported as negative, and heartbeat d
    - Breathing moved the phone by tens of mg in the 0.1–1 Hz band, and handling at the end of the recording reached hundreds of mg.
    - Conclusion: the phone and app capture a human seismocardiogram clearly. **The rate has not yet been checked against a reference**, so the next human recording needs a simultaneous pulse count or a chest strap.
    - Usability finding: the first recording was ended accidentally by touching Stop while turning the phone screen down. Stop and Cancel now need a 1 s hold.
+
+### 2026-11-21: Stage 1, first dog recordings (one dog, lying on its side, no reference pulse)
+
+| Recording | Placement | Quiet segment analysed | Envelope-spectrum peak (5–30 Hz band) | Breathing |
+|---|---|---|---|---|
+| `…0A45`, 47 s | Axilla, phone held by hand | 0.5–35.5 s | 49/min (prominence 7–18×); individual bursts suggest about 68–70/min | ~23/min |
+| `…6015`, 35 s | On the upper shoulder (scapula) | 0.5–29.5 s | **83/min**, the same on all three axes (prominence 17–29×) | ~30/min |
+
+- In both recordings the 5–30 Hz band shows a burst roughly every cycle, at about 5–10 mg. That is the same amplitude and shape as the human chest recording.
+- The axilla recording is ambiguous. The spectral peak (49/min) may come from breathing modulating the burst amplitude (about 2× the 23/min breathing rate) rather than from the heart rate.
+- **Confounder:** in the hand-held recording, the operator's own pulse could reach the phone through the hand. The operator's pulse rate is similar to the dog's (61–90/min in the human recording).
+- None of this is a validated canine heart rate. The next recordings need a reference: the femoral pulse counted at the same time, and the phone resting on the dog with no human contact.
