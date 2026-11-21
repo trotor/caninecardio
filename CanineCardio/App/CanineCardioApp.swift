@@ -105,6 +105,15 @@ enum DebugLaunchOptions {
         #endif
     }
 
+    /// `-CCAutoPreview`: start the live preview on launch (for device screenshots).
+    static var autoPreview: Bool {
+        #if DEBUG
+        return ProcessInfo.processInfo.arguments.contains("-CCAutoPreview")
+        #else
+        return false
+        #endif
+    }
+
     private static func value(after flag: String) -> String? {
         let args = ProcessInfo.processInfo.arguments
         guard let i = args.firstIndex(of: flag), i + 1 < args.count else { return nil }

@@ -49,7 +49,12 @@ struct RecordView: View {
             .padding(.bottom, 24)
         }
         .navigationTitle("Record")
-        .onAppear { micStatus = MicrophonePermission.status }
+        .onAppear {
+            micStatus = MicrophonePermission.status
+            if DebugLaunchOptions.autoPreview && session.phase == .idle {
+                Task { await withPermission { session.startPreview() } }
+            }
+        }
     }
 
     // MARK: - Settings

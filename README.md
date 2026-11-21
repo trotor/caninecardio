@@ -1,5 +1,7 @@
 # CanineCardio
 
+**English** · [Suomeksi](README_fi.md)
+
 An open-source iOS research app for finding out whether an iPhone resting gently on a dog's chest can detect individual heartbeats, and measure beat-to-beat intervals accurately enough to observe respiratory sinus arrhythmia.
 
 > [!WARNING]
@@ -12,13 +14,69 @@ An open-source iOS research app for finding out whether an iPhone resting gently
 
 | Phase | Scope | State |
 |---|---|---|
-| 1 | Raw signal acquisition, live display, local storage, CSV/WAV export | **Implemented. Not yet tested on a physical iPhone.** |
+| 1 | Raw signal acquisition, live display, local storage, CSV/WAV export | **Implemented and in use on an iPhone 16e.** |
 | 2 | Signal processing (filters, peak detection, intervals, quality) | Core library and tests implemented. **Not wired into the UI.** No heart rate is shown. |
 | 3 | Analysis (rate, IBI series, RMSSD/SDNN, respiration) | Partly: interval statistics exist behind a reliability gate. Respiration estimation not started. |
 | 4 | Analysis UI | Partly: the session screen shows raw and band-pass-filtered signals. |
-| 5 | Validation | Synthetic scenarios, scoring against ground truth, Python analysis, ECG comparison plan. |
+| 5 | Validation | Synthetic scenarios, scoring against ground truth, Python analysis, first real recordings (below). No reference-based validation yet. |
 
-The app records and exports raw signals first. Before any heartbeat detection is trusted, real recordings must show that the sensors pick up usable cardiac signals at all. See [docs/VALIDATION.md](docs/VALIDATION.md).
+## Screenshots
+
+| Sessions | Session details | Recorded signal |
+|---|---|---|
+| <img src="docs/images/app-sessions.png" width="250" alt="List of recorded sessions with sampling rates"> | <img src="docs/images/app-detail.png" width="250" alt="Session details with sampling statistics"> | <img src="docs/images/app-signals.png" width="250" alt="Accelerometer signal of a dog recording with overview and zoomed window"> |
+
+Screenshots from the iOS Simulator, showing real recordings copied from the iPhone.
+
+## Preliminary results (21 November 2026)
+
+These are the first real recordings: an iPhone 16e (iOS 27.2.1), one adult human (the developer) and one calm dog lying on its side. **No reference ECG or pulse count was recorded at the same time.** The results show which signals are present. They do not show how accurately heartbeats are detected. The full log is in [docs/VALIDATION.md](docs/VALIDATION.md) and [docs/SYNCHRONIZATION.md](docs/SYNCHRONIZATION.md).
+
+### Recording quality
+
+| Check | Result |
+|---|---|
+| Motion sampling | 100.2 Hz effective (100 Hz requested), intervals 9.973–9.981 ms, no gaps in any recording |
+| Clock check | Samples arrive 5.2 ms (median) after their sensor timestamp, so the motion and audio clocks agree |
+| Noise floor, phone at rest on a table | ~0.45 mg RMS in the 5–30 Hz band |
+| Audio | 48 kHz, no dropouts, sample-clock drift −15 ppm |
+| Audio vs motion (tap test, 5 taps) | The accelerometer responds ~5 ms after the sound starts (peak ~16 ms) |
+
+### Chest vibrations: table vs human vs dog
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/signals-dark.png">
+  <img src="docs/images/signals-light.png" alt="Accelerometer 5-30 Hz band over 8 seconds: flat on a table, regular bursts on a human chest, bursts of similar size on a dog">
+</picture>
+
+The 5–30 Hz band of the accelerometer, 8 s each, all on the same scale. On a table the trace is flat. On a human chest (sternum, breath held) there is a burst at every heartbeat, about 5–10 mg, which is 10–20× the noise floor. On the dog (phone resting freely on the side of the chest), bursts of similar size appear throughout the 56 s quiet part of the recording.
+
+### Beat-to-beat intervals: the open question
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/intervals-dark.png">
+  <img src="docs/images/intervals-light.png" alt="Candidate beat intervals: smooth changes in the human recording, highly irregular in the dog recording">
+</picture>
+
+Intervals between *candidate* beats, from an exploratory offline detector. In the human recording they change smoothly during the breath-hold. In the dog recording they jump between ~0.5 and ~1.5 s. The operator also felt the dog's pulse by hand as very irregular, which suggests the rhythm really varies; marked sinus arrhythmia is common in dogs. Without a reference, though, detection errors cannot be ruled out, and the data does not give a single heart rate: a spectral estimate gives about 56/min, the median interval about 71/min. A separate recording with the phone on the dog's shoulder gave a clearer rhythm of about 83/min.
+
+### Synchronising audio and motion
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/tap-test-dark.png">
+  <img src="docs/images/tap-test-light.png" alt="A pen tap: the microphone responds at 0 ms, the accelerometer rises over the next 5 to 16 ms">
+</picture>
+
+A pen tap on the table as recorded by both sensors, on the shared clock. The microphone reacts immediately. The accelerometer follows within one or two of its 10 ms samples.
+
+### What this shows, and what it does not
+
+- ✅ The phone and the app capture a clear chest-wall vibration (seismocardiogram) from a human, and similar periodic vibrations from a resting dog.
+- ✅ Timing is regular and the two sensors can be aligned to within a few milliseconds.
+- ❌ It is not yet shown that each detected burst on the dog is one heartbeat, or that the intervals are accurate.
+- Next steps:
+  1. The operator feels the dog's pulse (e.g. in the axilla) and makes a tongue click at every beat, so the app's microphone records a reference on the same clock.
+  2. After that, an ECG-based chest strap logging R-R intervals.
 
 ## What the app does (Phase 1)
 
@@ -26,6 +84,7 @@ The app records and exports raw signals first. Before any heartbeat detection is
 - Records **unprocessed microphone audio** at the hardware sample rate (typically 48 kHz). It uses `AVAudioEngine` with `AVAudioSession` mode `.measurement`, which turns off automatic gain and voice processing.
 - Offers recording durations of 30, 60 or 120 s and a start delay of 0, 5 or 10 s, so you can place the phone before recording begins. A live **Preview** mode shows the signals without recording.
 - Shows live acceleration, rotation rate and microphone level, plus a timer, measured sampling rates and a gross-motion indicator (Still / Slight motion / Moving). The motion indicator reflects movement only, not cardiac signal quality.
+- Stop and Cancel must be **held for one second**, so that placing the phone on a chest does not end the recording by accident.
 - Saves each session locally and exports it as CSV (motion), WAV (audio) and `metadata.json`, using the share sheet or the Files app.
 - Lists past sessions with sampling diagnostics. Each session can be inspected as a raw or band-pass-filtered waveform with a zoomable window.
 - Has no accounts, analytics, network access or third-party SDKs.
@@ -42,7 +101,7 @@ Continuous integration: `.github/workflows/ci.yml` runs the library tests, build
 ## Build and install
 
 ```sh
-git clone <this repository>
+git clone https://github.com/trotor/caninecardio.git
 cd caninecardio
 open CanineCardio.xcodeproj           # or first: xcodegen generate
 ```
@@ -70,8 +129,8 @@ Measure only a calm, resting dog that is comfortable being handled, with its own
 1. Let the dog settle lying on its side (lateral recumbency) or sternal. Note the posture in the **Label** field, along with the dog's ID and the phone position.
 2. Set the duration (start with 60 s) and a 5–10 s start delay.
 3. Tap **Preview** to check that the waveform responds, then tap **Record**.
-4. During the countdown, place the phone **screen up** on the left chest wall just behind the elbow, over the area where the heartbeat can be felt. Use light, steady contact. If possible, take your hands off the phone, or keep a hand still on the dog rather than on the phone.
-5. Keep quiet and still until the timer ends. Panting, purring-like sounds, licking and handling noise will dominate both sensors.
+4. During the countdown, place the phone **screen up** on the left chest wall just behind the elbow, over the area where the heartbeat can be felt. Use light, steady contact. If possible, take your hands off the phone; in the first recordings, the operator's own pulse could not be ruled out when the phone was held by hand.
+5. Keep quiet and still until the timer ends. Panting, licking, tail wagging and handling noise will dominate both sensors.
 6. Note anything relevant afterwards, such as the dog moving at a particular moment.
 
 The app plays no sounds or haptics while recording, because they would contaminate the signals. The screen stays awake during preview and recording. If the app goes to the background or the audio session is interrupted (for example by a phone call), the recording stops. The saved session is then marked **Interrupted**.
@@ -93,7 +152,7 @@ Each session is a folder `Documents/Sessions/<id>/`, also visible in the Files a
 - Rows are raw samples in arrival order, not resampled.
 - Audio frame *k* is at `audio.firstFrameUptimeS + k / sampleRateHz` on the same clock. How exactly the audio and motion streams line up is documented in [docs/SYNCHRONIZATION.md](docs/SYNCHRONIZATION.md).
 
-The sample exports in [`examples/synthetic/`](examples/synthetic/) are **SYNTHETIC**: generated by a program, not measured. They show the file format and serve as test inputs.
+The sample exports in [`examples/synthetic/`](examples/synthetic/) are **SYNTHETIC**: generated by a program, not measured. They show the file format and serve as test inputs. The real recordings described above are not published in this repository.
 
 ## Offline analysis
 
@@ -104,7 +163,7 @@ python analysis/analyze_session.py examples/synthetic/SYNTHETIC-regular  # synth
 python analysis/analyze_session.py <session> --reference ecg_r_peaks.csv # compare against reference beats
 ```
 
-The script recomputes sampling diagnostics and plots raw and filtered signals, Welch spectra and the microphone envelope on the motion time base. Given reference beat times (synthetic ground truth or ECG R peaks), it scores *candidate* beats by sensitivity, PPV and timing error.
+The script recomputes sampling diagnostics and plots raw and filtered signals, Welch spectra and the microphone envelope on the motion time base. Given reference beat times (synthetic ground truth or ECG R peaks), it scores *candidate* beats by sensitivity, PPV and timing error. `analysis/make_readme_figures.py` produced the figures above.
 
 ## Architecture
 
@@ -118,8 +177,9 @@ CardioKit/               Swift package with the testable modules
                          beat intervals, artifact masks, reliability summary, BeatMatcher scoring
   SyntheticData          labelled synthetic signals with ground truth (tests/previews only)
   cardio-synth           CLI that writes the synthetic example sessions
-analysis/                Python offline analysis
-docs/                    architecture, synchronisation, validation plan
+analysis/                Python offline analysis and figure scripts
+design/                  app icon generator
+docs/                    architecture, synchronisation, validation plan and results log
 examples/synthetic/      synthetic example sessions (sample CSV export)
 ```
 
