@@ -89,7 +89,7 @@ If no recording shows this, the outcome is reported as negative, and heartbeat d
 | Recording | Placement | Quiet segment analysed | Envelope-spectrum peak (5–30 Hz band) | Breathing |
 |---|---|---|---|---|
 | `…0A45`, 47 s | Axilla, phone held by hand | 0.5–35.5 s | 49/min (prominence 7–18×); individual bursts suggest about 68–70/min | ~23/min |
-| `…6015`, 35 s | On the upper shoulder (scapula) | 0.5–29.5 s | **83/min**, the same on all three axes (prominence 17–29×) | ~30/min |
+| `…6015`, 35 s | On the upper shoulder (scapula), resting freely with no hand contact | 0.5–29.5 s | **83/min**, the same on all three axes (prominence 17–29×) | ~30/min |
 
 - In both recordings the 5–30 Hz band shows a burst roughly every cycle, at about 5–10 mg. That is the same amplitude and shape as the human chest recording.
 - The axilla recording is ambiguous. The spectral peak (49/min) may come from breathing modulating the burst amplitude (about 2× the 23/min breathing rate) rather than from the heart rate.
