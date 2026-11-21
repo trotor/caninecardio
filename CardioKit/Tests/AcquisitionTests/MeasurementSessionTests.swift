@@ -19,11 +19,19 @@ final class FakeMotionSource: MotionSource {
         startCount += 1
         let gyro = isGyroscopeAvailable
         let offset = timestampOffset
+        // Emits every sample due on a nominal 100 Hz grid, catching up after scheduler delays, so
+        // the sample count does not depend on how promptly the test machine wakes the task.
         task = Task.detached {
+            let t0 = ProcessInfo.processInfo.systemUptime
+            var k = 0
             while !Task.isCancelled {
-                let t = ProcessInfo.processInfo.systemUptime + offset
-                capture.append(.accelerometer, Vector3Sample(t: t, x: 0, y: 0, z: -1, receivedAt: t))
-                if gyro { capture.append(.gyroscope, Vector3Sample(t: t, x: 0.01, y: 0, z: 0, receivedAt: t)) }
+                let now = ProcessInfo.processInfo.systemUptime
+                while t0 + Double(k) * 0.01 <= now {
+                    let t = t0 + Double(k) * 0.01 + offset
+                    capture.append(.accelerometer, Vector3Sample(t: t, x: 0, y: 0, z: -1, receivedAt: now + offset))
+                    if gyro { capture.append(.gyroscope, Vector3Sample(t: t, x: 0.01, y: 0, z: 0, receivedAt: now + offset)) }
+                    k += 1
+                }
                 try? await Task.sleep(for: .milliseconds(10))
             }
         }
