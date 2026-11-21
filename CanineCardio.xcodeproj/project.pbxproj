@@ -22,6 +22,7 @@
 		BC71A8A90337E8BACD4AFF2F /* CardioCore in Frameworks */ = {isa = PBXBuildFile; productRef = BDCAFB9029EBE4BDD492274E /* CardioCore */; };
 		C711EA53CC34937373DE10A5 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DFD7A18C3F3FB15168DD1 /* RecordView.swift */; };
 		C79F16E5BF232712CAEFE4E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2CD64B9021F361AC5384441 /* Assets.xcassets */; };
+		CC0F3E95DD6B7F5D6E706FB7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 2D465FD80F4968674751614F /* PrivacyInfo.xcprivacy */; };
 		EB21F4C68D7BE026D4AD38BC /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351864D1649F438A51A728AC /* Formatting.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		1A5DFD7A18C3F3FB15168DD1 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		228AEC05E29BDC9033557283 /* BeatAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatAnalysisView.swift; sourceTree = "<group>"; };
 		273BA22FDC584CBD9C4F641C /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		2D465FD80F4968674751614F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		351864D1649F438A51A728AC /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
 		3EE9C407C654F7D801A27051 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
 		4C5C09B6A1CC0D4F93CB832F /* AudioEnvelopeChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEnvelopeChart.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				C2CD64B9021F361AC5384441 /* Assets.xcassets */,
 				684A314CFB00E9E93AB86F92 /* Info.plist */,
+				2D465FD80F4968674751614F /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C79F16E5BF232712CAEFE4E6 /* Assets.xcassets in Resources */,
+				CC0F3E95DD6B7F5D6E706FB7 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
