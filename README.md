@@ -76,7 +76,7 @@ A pen tap on the table as recorded by both sensors, on the shared clock. The mic
 - ❌ It is not yet shown that each detected burst on the dog is one heartbeat, or that the intervals are accurate.
 - Next steps:
   1. The operator feels the dog's pulse (e.g. in the axilla) and makes a tongue click at every beat, so the app's microphone records a reference on the same clock.
-  2. After that, an ECG-based chest strap logging R-R intervals.
+  2. After that, a Polar H10 ECG chest strap read directly by the app over Bluetooth; see [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## What the app does (Phase 1)
 

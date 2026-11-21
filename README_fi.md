@@ -76,7 +76,7 @@ Kynän napautus pöytään molempien anturien tallentamana, yhteisellä aikajana
 - ❌ Vielä ei ole osoitettu, että jokainen koiralla tunnistettu purske on yksi sydämenlyönti tai että lyöntivälit ovat tarkkoja.
 - Seuraavat askeleet:
   1. Mittaaja tunnustelee koiran pulssia (esim. kainalosta) ja naksauttaa kieltä jokaisella lyönnillä, jolloin sovelluksen mikrofoni tallentaa vertailun samalle aikajanalle.
-  2. Sen jälkeen EKG:hen perustuva sykevyö, joka tallentaa R-R-välit.
+  2. Sen jälkeen Polar H10 -EKG-sykevyö, jonka sovellus lukee suoraan Bluetoothilla; katso [docs/ROADMAP.md](docs/ROADMAP.md) (englanniksi).
 
 ## Mitä sovellus tekee (vaihe 1)
 
