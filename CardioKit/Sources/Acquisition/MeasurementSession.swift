@@ -211,9 +211,13 @@ public final class MeasurementSession {
         s.audioFramesWritten = audio?.framesWritten ?? 0
         let lastSecond = accel.times.lastIndex { $0 < t - 1 }.map { $0 + 1 } ?? 0
         if accel.times.count - lastSecond >= 20 {
-            let mags = (lastSecond..<accel.times.count).map { i in
-                (accel.channels[0][i] * accel.channels[0][i] + accel.channels[1][i] * accel.channels[1][i]
-                    + accel.channels[2][i] * accel.channels[2][i]).squareRoot()
+            let (ax, ay, az) = (accel.channels[0], accel.channels[1], accel.channels[2])
+            var mags = [Double]()
+            mags.reserveCapacity(ax.count - lastSecond)
+            for i in lastSecond..<ax.count {
+                let x = ax[i], y = ay[i], z = az[i]
+                let sumSquares: Double = x * x + y * y + z * z
+                mags.append(sumSquares.squareRoot())
             }
             s.motionLevel = MotionLevel.classify(magnitudeStdG: Statistics.std(mags))
         }
