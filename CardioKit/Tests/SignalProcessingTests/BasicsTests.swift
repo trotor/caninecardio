@@ -50,4 +50,20 @@ final class BasicsTests: XCTestCase {
         let noise = (0..<3000).map { _ in Double.random(in: -1...1, using: &rng) }
         XCTAssertLessThan(Periodicity.autocorrelationPeak(noise, sampleRateHz: fs, minLagS: 0.25, maxLagS: 2)!.value, 0.2)
     }
+
+    /// Regression: a recording dominated by gross motion crashed the app when every local
+    /// maximum of the autocorrelation in the lag range was negative (threshold 0.85 x a negative
+    /// maximum is larger than the maximum itself, so no lag qualified).
+    func testPeriodicityWithOnlyNegativeLocalMaximaDoesNotCrash() throws {
+        let fs = 100.0
+        // Slow 3 s oscillation (negative autocorrelation for lags 1-2 s) plus a 0.5 s ripple
+        // that creates local maxima there.
+        let x = (0..<3000).map { i -> Double in
+            let t = Double(i) / fs
+            return sin(2 * .pi * t / 3) + 0.5 * sin(2 * .pi * t / 0.5)
+        }
+        let p = try XCTUnwrap(Periodicity.autocorrelationPeak(x, sampleRateHz: fs, minLagS: 1.0, maxLagS: 2.0))
+        XCTAssertLessThan(p.value, 0)
+        XCTAssertTrue((1.0...2.0).contains(p.lagS))
+    }
 }

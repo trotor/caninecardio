@@ -32,8 +32,10 @@ struct BeatAnalysisSection: View {
         Section {
             if let error {
                 Text(error).foregroundStyle(.red).font(.footnote)
+                rerunButton
             } else if let results, let axis = activeAxis(results), let result = results[axis] {
                 content(result: result, axis: axis)
+                rerunButton
             } else {
                 HStack {
                     ProgressView()
@@ -166,6 +168,18 @@ struct BeatAnalysisSection: View {
             .chartYAxisLabel("ms")
             .chartXAxisLabel("s")
             .frame(height: 150)
+        }
+    }
+
+    /// Recomputes the analysis from the raw recording (for example after an app update changed
+    /// the algorithm). Saved manual corrections are kept and re-applied.
+    private var rerunButton: some View {
+        Button {
+            results = nil
+            error = nil
+            Task { await analyse() }
+        } label: {
+            Label("Run analysis again", systemImage: "arrow.clockwise")
         }
     }
 

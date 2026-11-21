@@ -123,7 +123,10 @@ public enum Periodicity {
         }
         let maxima = (lo...hi).filter { r[$0] > r[$0 - 1] && r[$0] >= r[$0 + 1] }
         guard let strongest = maxima.map({ r[$0] }).max() else { return (0, .nan) }
-        let chosen = maxima.first { r[$0] >= acceptFraction * strongest }!
+        // With no positive correlation (e.g. a recording dominated by gross motion), scaling the
+        // maximum by acceptFraction would raise the threshold above it; use the maximum itself.
+        let threshold = strongest > 0 ? acceptFraction * strongest : strongest
+        let chosen = maxima.first { r[$0] >= threshold } ?? maxima[0]
         return (r[chosen], Double(chosen) / sampleRateHz)
     }
 }
