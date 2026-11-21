@@ -81,6 +81,7 @@ Kynän napautus pöytään molempien anturien tallentamana, yhteisellä aikajana
 - Seuraavat askeleet:
   1. Mittaaja tunnustelee koiran pulssia (esim. kainalosta) ja naksauttaa kieltä jokaisella lyönnillä, jolloin sovelluksen mikrofoni tallentaa vertailun samalle aikajanalle.
   2. Sen jälkeen Polar H10 -EKG-sykevyö, jonka sovellus lukee suoraan Bluetoothilla; katso [docs/ROADMAP.md](docs/ROADMAP.md) (englanniksi).
+- Pidemmällä aikavälillä urheilu- ja työkoirien sykkeen, liikkeen ja reitin seuranta suorituksen aikana: EKG-valjaat, liikeanturi ja GPS sekä avoin datan vienti. Suunnitelma on tiedostossa [docs/ROADMAP.md](docs/ROADMAP.md) (englanniksi).
 
 ## Mitä sovellus tekee (vaihe 1)
 
