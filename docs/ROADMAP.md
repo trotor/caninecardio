@@ -83,3 +83,12 @@ Phone app (this project): configure, live view when in range, download, sync and
 - Battery life for a full hunting day with GNSS running continuously.
 
 **Hardware details above are from memory and must be checked for current availability before buying.**
+
+## Distribution
+
+- **TestFlight (internal)** is live since 2026-11-21. See [RELEASE.md](RELEASE.md).
+- **External TestFlight and the App Store** need a privacy policy page.
+- **App Store review risks to plan for:**
+  - Guideline 1.4.1: health measurements from device sensors only. Show a rate only when the reliability checks pass, and give reviewers the method and validation data, so the Polar H10 validation should come first.
+  - Guideline 2.2: an app must not be presented as a beta. Call it a research tool rather than "experimental" in store-facing text.
+- Data stays on the device ("Data Not Collected") until a cloud or GNSS feature is added. GNSS routes plus owner details would be personal data under GDPR.
