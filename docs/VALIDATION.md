@@ -95,3 +95,16 @@ If no recording shows this, the outcome is reported as negative, and heartbeat d
 - The axilla recording is ambiguous. The spectral peak (49/min) may come from breathing modulating the burst amplitude (about 2× the 23/min breathing rate) rather than from the heart rate.
 - **Confounder:** in the hand-held recording, the operator's own pulse could reach the phone through the hand. The operator's pulse rate is similar to the dog's (61–90/min in the human recording).
 - None of this is a validated canine heart rate. The next recordings need a reference: the femoral pulse counted at the same time, and the phone resting on the dog with no human contact.
+
+### 2026-11-21: Stage 1, more dog recordings (same dog, no reference pulse)
+
+| Recording | Placement | Quiet segment | Vibration bursts | Envelope-spectrum peak | Candidate intervals | Breathing |
+|---|---|---|---|---|---|---|
+| `…335A`, 27 s | (operator to confirm) | 0.5–21.5 s | ~5–10 mg | 53–75/min, depending on axis | median 758 ms (79/min); 520–1780 ms | 30–38/min |
+| `…871C`, 60 s | On the side of the chest, resting freely; tail wag in the first ~2 s | 2.5–58.5 s | ~8–15 mg, clearly separable | 56/min on all axes (prominence 5–6×) | median 848 ms (71/min); 460–1510 ms | 26/min, ~9 mg |
+
+- A distinct mechanical burst recurs in `…871C` throughout the 56 s quiet segment, about 3–5× the background vibration.
+- The **rate is not uniquely determined.** Interval irregularity (460–1510 ms) could be genuine canine sinus arrhythmia, missed or extra detections, or both. The envelope spectrum and the candidate intervals disagree (56 vs 71/min).
+- The correlation between candidate intervals and respiration was weak and inconsistent (+0.53, n = 15 in `…335A`; −0.22, n = 48 in `…871C`), so respiratory modulation is not demonstrated.
+- A kitchen-timer beep in the audio does not affect the motion data.
+- Conclusion: the signals are clearly present on the dog, but heartbeat identification cannot be judged without a reference. The next step is an ECG-derived reference, for example a chest-strap heart rate monitor that logs R-R intervals, synchronised with taps.
