@@ -1,0 +1,462 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02AF3EAAAF96447FA624CE3A /* AudioEnvelopeChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C09B6A1CC0D4F93CB832F /* AudioEnvelopeChart.swift */; };
+		0623BAC00039CA6BADAC9374 /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF9A1607E9079F665E754E /* WaveformView.swift */; };
+		137CFFDFEE05F50D86412487 /* SignalProcessing in Frameworks */ = {isa = PBXBuildFile; productRef = 5422C6E5C2123887F29723CB /* SignalProcessing */; };
+		1FA7A2C0FB82E07E9FBD3E48 /* SessionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5C91294184B6DD1E02486C /* SessionListView.swift */; };
+		225DAFD00048E290F9A2BCF8 /* Acquisition in Frameworks */ = {isa = PBXBuildFile; productRef = 5DF531ED4A4319839C25D936 /* Acquisition */; };
+		486FC432F6462F8F6D3F5E74 /* CanineCardioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B289FEE1EEA13F1033D36 /* CanineCardioApp.swift */; };
+		536751DDF8A15AE39F084547 /* DebugSelfTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8392B1092D5D8155AA562B09 /* DebugSelfTest.swift */; };
+		7F80A966FF1FD114DC1E3016 /* SyntheticData in Frameworks */ = {isa = PBXBuildFile; productRef = 24D05EEC81ACB1CF95C29900 /* SyntheticData */; };
+		812CC28C5CE6BDC8FB8D1857 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BA22FDC584CBD9C4F641C /* AboutView.swift */; };
+		8883E1AF61D6E62405A8CC8D /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = E6841D25E4EC72A7A7932B01 /* Storage */; };
+		94534210F589C7D94C92566B /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE9C407C654F7D801A27051 /* SessionDetailView.swift */; };
+		BC71A8A90337E8BACD4AFF2F /* CardioCore in Frameworks */ = {isa = PBXBuildFile; productRef = BDCAFB9029EBE4BDD492274E /* CardioCore */; };
+		C711EA53CC34937373DE10A5 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DFD7A18C3F3FB15168DD1 /* RecordView.swift */; };
+		C79F16E5BF232712CAEFE4E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2CD64B9021F361AC5384441 /* Assets.xcassets */; };
+		EB21F4C68D7BE026D4AD38BC /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351864D1649F438A51A728AC /* Formatting.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A5DFD7A18C3F3FB15168DD1 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		273BA22FDC584CBD9C4F641C /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		351864D1649F438A51A728AC /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
+		3EE9C407C654F7D801A27051 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
+		4C5C09B6A1CC0D4F93CB832F /* AudioEnvelopeChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEnvelopeChart.swift; sourceTree = "<group>"; };
+		684A314CFB00E9E93AB86F92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6CEF9A1607E9079F665E754E /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
+		7B5C91294184B6DD1E02486C /* SessionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionListView.swift; sourceTree = "<group>"; };
+		8392B1092D5D8155AA562B09 /* DebugSelfTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSelfTest.swift; sourceTree = "<group>"; };
+		990B289FEE1EEA13F1033D36 /* CanineCardioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanineCardioApp.swift; sourceTree = "<group>"; };
+		C2CD64B9021F361AC5384441 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C3E11EBA3B07BAAB4BA0AB0F /* CanineCardio.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CanineCardio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD7849E9A9F5F4B8EF48C500 /* CardioKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CardioKit; path = CardioKit; sourceTree = SOURCE_ROOT; };
+		D0B37F5CC2537A6E69500EB7 /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CDF96FAA94A083C8657E18E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC71A8A90337E8BACD4AFF2F /* CardioCore in Frameworks */,
+				137CFFDFEE05F50D86412487 /* SignalProcessing in Frameworks */,
+				8883E1AF61D6E62405A8CC8D /* Storage in Frameworks */,
+				225DAFD00048E290F9A2BCF8 /* Acquisition in Frameworks */,
+				7F80A966FF1FD114DC1E3016 /* SyntheticData in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12971885074BD0CD52DAE2DB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				273BA22FDC584CBD9C4F641C /* AboutView.swift */,
+				351864D1649F438A51A728AC /* Formatting.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		1B38A7D78C70012FD36BBC39 /* CanineCardio */ = {
+			isa = PBXGroup;
+			children = (
+				77977562D68CEC38770CBDC0 /* App */,
+				12971885074BD0CD52DAE2DB /* Common */,
+				556D17396B1E04CB35D6B743 /* Recording */,
+				BB3ED4A52707A407777ED2F2 /* Resources */,
+				B4029DF2CB5DE7D2876FC4D1 /* Sessions */,
+			);
+			path = CanineCardio;
+			sourceTree = "<group>";
+		};
+		3FF71B972ECE2EC401BDE933 = {
+			isa = PBXGroup;
+			children = (
+				1B38A7D78C70012FD36BBC39 /* CanineCardio */,
+				D3C26669AC2FE95BE0E2BBB2 /* Config */,
+				7FF69C03D4F40393A35DEDC9 /* Packages */,
+				60511DA6CD59CD4721D5FD24 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		556D17396B1E04CB35D6B743 /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				1A5DFD7A18C3F3FB15168DD1 /* RecordView.swift */,
+				6CEF9A1607E9079F665E754E /* WaveformView.swift */,
+			);
+			path = Recording;
+			sourceTree = "<group>";
+		};
+		60511DA6CD59CD4721D5FD24 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C3E11EBA3B07BAAB4BA0AB0F /* CanineCardio.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		77977562D68CEC38770CBDC0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				990B289FEE1EEA13F1033D36 /* CanineCardioApp.swift */,
+				8392B1092D5D8155AA562B09 /* DebugSelfTest.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7FF69C03D4F40393A35DEDC9 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				CD7849E9A9F5F4B8EF48C500 /* CardioKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		B4029DF2CB5DE7D2876FC4D1 /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				4C5C09B6A1CC0D4F93CB832F /* AudioEnvelopeChart.swift */,
+				3EE9C407C654F7D801A27051 /* SessionDetailView.swift */,
+				7B5C91294184B6DD1E02486C /* SessionListView.swift */,
+			);
+			path = Sessions;
+			sourceTree = "<group>";
+		};
+		BB3ED4A52707A407777ED2F2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C2CD64B9021F361AC5384441 /* Assets.xcassets */,
+				684A314CFB00E9E93AB86F92 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D3C26669AC2FE95BE0E2BBB2 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				D0B37F5CC2537A6E69500EB7 /* Signing.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		03E0FE04BA87E0F922446564 /* CanineCardio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5259FD9B113C7D81B7601297 /* Build configuration list for PBXNativeTarget "CanineCardio" */;
+			buildPhases = (
+				889C6096FAAD53920EE0EDA1 /* Sources */,
+				77DBE86D8F1A888974A98A9D /* Resources */,
+				CDF96FAA94A083C8657E18E3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CanineCardio;
+			packageProductDependencies = (
+				BDCAFB9029EBE4BDD492274E /* CardioCore */,
+				5422C6E5C2123887F29723CB /* SignalProcessing */,
+				E6841D25E4EC72A7A7932B01 /* Storage */,
+				5DF531ED4A4319839C25D936 /* Acquisition */,
+				24D05EEC81ACB1CF95C29900 /* SyntheticData */,
+			);
+			productName = CanineCardio;
+			productReference = C3E11EBA3B07BAAB4BA0AB0F /* CanineCardio.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0F7794C331A6AE49B40B4474 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					03E0FE04BA87E0F922446564 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 0B158D80396312F6306C394D /* Build configuration list for PBXProject "CanineCardio" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 3FF71B972ECE2EC401BDE933;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				982686D0E9AB1E2737257A43 /* XCLocalSwiftPackageReference "CardioKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 60511DA6CD59CD4721D5FD24 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				03E0FE04BA87E0F922446564 /* CanineCardio */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		77DBE86D8F1A888974A98A9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C79F16E5BF232712CAEFE4E6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		889C6096FAAD53920EE0EDA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				812CC28C5CE6BDC8FB8D1857 /* AboutView.swift in Sources */,
+				02AF3EAAAF96447FA624CE3A /* AudioEnvelopeChart.swift in Sources */,
+				486FC432F6462F8F6D3F5E74 /* CanineCardioApp.swift in Sources */,
+				536751DDF8A15AE39F084547 /* DebugSelfTest.swift in Sources */,
+				EB21F4C68D7BE026D4AD38BC /* Formatting.swift in Sources */,
+				C711EA53CC34937373DE10A5 /* RecordView.swift in Sources */,
+				94534210F589C7D94C92566B /* SessionDetailView.swift in Sources */,
+				1FA7A2C0FB82E07E9FBD3E48 /* SessionListView.swift in Sources */,
+				0623BAC00039CA6BADAC9374 /* WaveformView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		46AF2BDA89F53C843685D9EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0B37F5CC2537A6E69500EB7 /* Signing.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CanineCardio/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		6E2CFB644C3E6CF8148D0438 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		9A7DE3FACDB6FFC9FC81F85E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		D121C8463B9B416296B28AEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0B37F5CC2537A6E69500EB7 /* Signing.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CanineCardio/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0B158D80396312F6306C394D /* Build configuration list for PBXProject "CanineCardio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E2CFB644C3E6CF8148D0438 /* Debug */,
+				9A7DE3FACDB6FFC9FC81F85E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5259FD9B113C7D81B7601297 /* Build configuration list for PBXNativeTarget "CanineCardio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D121C8463B9B416296B28AEC /* Debug */,
+				46AF2BDA89F53C843685D9EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		982686D0E9AB1E2737257A43 /* XCLocalSwiftPackageReference "CardioKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = CardioKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		24D05EEC81ACB1CF95C29900 /* SyntheticData */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SyntheticData;
+		};
+		5422C6E5C2123887F29723CB /* SignalProcessing */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SignalProcessing;
+		};
+		5DF531ED4A4319839C25D936 /* Acquisition */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Acquisition;
+		};
+		BDCAFB9029EBE4BDD492274E /* CardioCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CardioCore;
+		};
+		E6841D25E4EC72A7A7932B01 /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Storage;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 0F7794C331A6AE49B40B4474 /* Project object */;
+}

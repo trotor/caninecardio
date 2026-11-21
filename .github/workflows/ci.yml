@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  swift:
+    name: Package tests + app build
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select latest stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: CardioKit tests (macOS)
+        working-directory: CardioKit
+        run: swift test
+
+      - name: CardioKit build for iOS (compiles the iOS-only acquisition code)
+        working-directory: CardioKit
+        run: xcodebuild build -scheme CardioKit-Package -destination 'generic/platform=iOS Simulator' -quiet
+
+      - name: Regenerate Xcode project from project.yml
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Build app (iOS Simulator, unsigned)
+        run: >
+          xcodebuild build -project CanineCardio.xcodeproj -scheme CanineCardio
+          -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO -quiet
+
+      - name: Generate synthetic sessions
+        run: swift run --package-path CardioKit cardio-synth "$RUNNER_TEMP/synthetic"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Offline analysis smoke test
+        run: |
+          pip install -r analysis/requirements.txt
+          python analysis/analyze_session.py "$RUNNER_TEMP/synthetic/SYNTHETIC-regular" --out "$RUNNER_TEMP/out"
+          python analysis/analyze_session.py examples/synthetic/SYNTHETIC-jitterAndDroppedSamples --out "$RUNNER_TEMP/out2"

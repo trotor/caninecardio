@@ -1,0 +1,25 @@
+# Xcode / SwiftPM
+DerivedData/
+build/
+.build/
+.swiftpm/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+CardioKit/Package.resolved
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Analysis output
+**/analysis/*.png
+**/analysis/report.json
+
+# macOS
+.DS_Store
+
+# Local signing (team ID, bundle ID)
+Config/Signing.local.xcconfig

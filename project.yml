@@ -1,0 +1,62 @@
+name: CanineCardio
+options:
+  bundleIdPrefix: org.example.caninecardio
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+  xcodeVersion: "16.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+packages:
+  CardioKit:
+    path: CardioKit
+targets:
+  CanineCardio:
+    type: application
+    platform: iOS
+    sources:
+      - path: CanineCardio
+    dependencies:
+      - package: CardioKit
+        product: CardioCore
+      - package: CardioKit
+        product: SignalProcessing
+      - package: CardioKit
+        product: Storage
+      - package: CardioKit
+        product: Acquisition
+      - package: CardioKit
+        product: SyntheticData
+    info:
+      path: CanineCardio/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: CanineCardio
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSMicrophoneUsageDescription: CanineCardio records raw microphone audio during a measurement so that heart sounds can be analysed alongside chest motion. Audio is stored only on this device.
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        UILaunchScreen: {}
+        UIRequiredDeviceCapabilities: [accelerometer]
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        ITSAppUsesNonExemptEncryption: false
+    configFiles:
+      Debug: Config/Signing.xcconfig
+      Release: Config/Signing.xcconfig
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        GENERATE_INFOPLIST_FILE: false
+schemes:
+  CanineCardio:
+    build:
+      targets:
+        CanineCardio: all
+    run:
+      config: Debug

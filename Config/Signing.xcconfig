@@ -1,0 +1,9 @@
+// Signing defaults for the public repository: placeholders only.
+// To run on a device, create Config/Signing.local.xcconfig (git-ignored) with e.g.
+//   DEVELOPMENT_TEAM = ABCDE12345
+//   PRODUCT_BUNDLE_IDENTIFIER = com.yourdomain.caninecardio
+PRODUCT_BUNDLE_IDENTIFIER = org.example.caninecardio
+DEVELOPMENT_TEAM =
+CODE_SIGN_STYLE = Automatic
+
+#include? "Signing.local.xcconfig"
