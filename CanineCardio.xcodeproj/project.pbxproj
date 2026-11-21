@@ -14,6 +14,7 @@
 		225DAFD00048E290F9A2BCF8 /* Acquisition in Frameworks */ = {isa = PBXBuildFile; productRef = 5DF531ED4A4319839C25D936 /* Acquisition */; };
 		486FC432F6462F8F6D3F5E74 /* CanineCardioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B289FEE1EEA13F1033D36 /* CanineCardioApp.swift */; };
 		536751DDF8A15AE39F084547 /* DebugSelfTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8392B1092D5D8155AA562B09 /* DebugSelfTest.swift */; };
+		6E07E5B739C49D063AC42C5A /* BeatAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228AEC05E29BDC9033557283 /* BeatAnalysisView.swift */; };
 		7F80A966FF1FD114DC1E3016 /* SyntheticData in Frameworks */ = {isa = PBXBuildFile; productRef = 24D05EEC81ACB1CF95C29900 /* SyntheticData */; };
 		812CC28C5CE6BDC8FB8D1857 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BA22FDC584CBD9C4F641C /* AboutView.swift */; };
 		8883E1AF61D6E62405A8CC8D /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = E6841D25E4EC72A7A7932B01 /* Storage */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		1A5DFD7A18C3F3FB15168DD1 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		228AEC05E29BDC9033557283 /* BeatAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatAnalysisView.swift; sourceTree = "<group>"; };
 		273BA22FDC584CBD9C4F641C /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		351864D1649F438A51A728AC /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
 		3EE9C407C654F7D801A27051 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				4C5C09B6A1CC0D4F93CB832F /* AudioEnvelopeChart.swift */,
+				228AEC05E29BDC9033557283 /* BeatAnalysisView.swift */,
 				3EE9C407C654F7D801A27051 /* SessionDetailView.swift */,
 				7B5C91294184B6DD1E02486C /* SessionListView.swift */,
 			);
@@ -231,6 +234,7 @@
 			files = (
 				812CC28C5CE6BDC8FB8D1857 /* AboutView.swift in Sources */,
 				02AF3EAAAF96447FA624CE3A /* AudioEnvelopeChart.swift in Sources */,
+				6E07E5B739C49D063AC42C5A /* BeatAnalysisView.swift in Sources */,
 				486FC432F6462F8F6D3F5E74 /* CanineCardioApp.swift in Sources */,
 				536751DDF8A15AE39F084547 /* DebugSelfTest.swift in Sources */,
 				EB21F4C68D7BE026D4AD38BC /* Formatting.swift in Sources */,

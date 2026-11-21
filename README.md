@@ -15,9 +15,9 @@ An open-source iOS research app for finding out whether an iPhone resting gently
 | Phase | Scope | State |
 |---|---|---|
 | 1 | Raw signal acquisition, live display, local storage, CSV/WAV export | **Implemented and in use on an iPhone 16e.** |
-| 2 | Signal processing (filters, peak detection, intervals, quality) | Core library and tests implemented. **Not wired into the UI.** No heart rate is shown. |
+| 2 | Signal processing (filters, peak detection, intervals, quality) | Implemented and tested. Runs on recorded sessions in the app (experimental beat analysis). Tuned only on synthetic data so far. |
 | 3 | Analysis (rate, IBI series, RMSSD/SDNN, respiration) | Partly: interval statistics exist behind a reliability gate. Respiration estimation not started. |
-| 4 | Analysis UI | Partly: the session screen shows raw and band-pass-filtered signals. |
+| 4 | Analysis UI | Partly: beat analysis with candidate beats, intervals, a reliability verdict and manual corrections; raw and filtered signals. No live heart rate during recording. |
 | 5 | Validation | Synthetic scenarios, scoring against ground truth, Python analysis, first real recordings (below). No reference-based validation yet. |
 
 ## Screenshots
@@ -26,7 +26,11 @@ An open-source iOS research app for finding out whether an iPhone resting gently
 |---|---|---|
 | <img src="docs/images/app-sessions.png" width="250" alt="List of recorded sessions with sampling rates"> | <img src="docs/images/app-detail.png" width="250" alt="Session details with sampling statistics"> | <img src="docs/images/app-signals.png" width="250" alt="Accelerometer signal of a dog recording with overview and zoomed window"> |
 
-Screenshots from the iOS Simulator, showing real recordings copied from the iPhone.
+| Beat analysis, human chest | Beat analysis, dog |
+|---|---|
+| <img src="docs/images/app-beats-human.png" width="250" alt="Beat analysis of a human chest recording: 74 per minute, beat markers on every vibration burst"> | <img src="docs/images/app-beats-dog.png" width="250" alt="Beat analysis of a dog recording: insufficient confidence, with the reasons listed"> |
+
+Screenshots from the iOS Simulator, showing real recordings copied from the iPhone. The app reports a rate for the human recording, but for the dog recording it reports **insufficient confidence** and gives its reasons rather than a number.
 
 ## Preliminary results (21 November 2026)
 
@@ -87,6 +91,11 @@ A pen tap on the table as recorded by both sensors, on the shared clock. The mic
 - Stop and Cancel must be **held for one second**, so that placing the phone on a chest does not end the recording by accident.
 - Saves each session locally and exports it as CSV (motion), WAV (audio) and `metadata.json`, using the share sheet or the Files app.
 - Lists past sessions with sampling diagnostics. Each session can be inspected as a raw or band-pass-filtered waveform with a zoomable window.
+- **Beat analysis (experimental)** of each recorded session:
+  - candidate beats from the 5–30 Hz chest vibration on each axis, with the most reliable axis chosen automatically;
+  - beat markers on the waveform and a beat-to-beat interval chart;
+  - a rate, SD and RMSSD shown **only when the reliability checks pass**; otherwise "insufficient confidence" with the reasons;
+  - tapping the waveform rejects a beat or adds one at the nearest vibration peak. Corrections are saved as `beats.json` in the session folder and included in the export.
 - Has no accounts, analytics, network access or third-party SDKs.
 
 ## Requirements
@@ -145,6 +154,7 @@ Each session is a folder `Documents/Sessions/<id>/`, also visible in the Files a
 | `accelerometer.csv` | `index,t_rel_s,t_uptime_s,received_uptime_s,x_g,y_g,z_g` |
 | `gyroscope.csv` | `index,t_rel_s,t_uptime_s,received_uptime_s,x_rad_s,y_rad_s,z_rad_s` |
 | `audio.wav` | Mono (usually) 32-bit float PCM at the hardware rate, trimmed to the recording window. |
+| `beats.json` | Only after manual corrections: analysis axis, automatically detected beats, and rejected and added beats (uptime seconds). |
 
 - `t_uptime_s` is the sensor timestamp on the device's monotonic uptime clock.
 - `t_rel_s = t_uptime_s − referenceUptimeS`, so 0 is the start of the recording.

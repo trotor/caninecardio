@@ -18,6 +18,7 @@ public struct RecordedSession: Sendable {
         if let a = metadata.accelerometer { names.append(a.fileName) }
         if let g = metadata.gyroscope { names.append(g.fileName) }
         if let au = metadata.audio { names.append(au.fileName) }
+        names.append(BeatAnnotations.fileName)
         return names.map { directory.appendingPathComponent($0) }
             .filter { FileManager.default.fileExists(atPath: $0.path) }
     }

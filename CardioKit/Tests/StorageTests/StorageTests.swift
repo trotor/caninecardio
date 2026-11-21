@@ -1,4 +1,5 @@
 import CardioCore
+import SignalProcessing
 import XCTest
 @testable import Storage
 
@@ -76,5 +77,19 @@ final class StorageTests: XCTestCase {
         let id = SessionStore.makeSessionID(date: Date(timeIntervalSince1970: 0))
         XCTAssertTrue(id.hasPrefix("19700101T000000Z-"))
         XCTAssertTrue(SessionStore.makeSessionID(synthetic: true).hasPrefix("SYNTHETIC-"))
+    }
+
+    func testBeatAnnotationsRoundTripAndExport() throws {
+        let store = SessionStore(root: root)
+        try store.finalize(metadata: metadata(id: "A"), accelerometer: series(.accelerometer), gyroscope: series(.gyroscope))
+        XCTAssertNil(store.loadBeatAnnotations(id: "A"))
+        let ann = BeatAnnotations(axis: .y, detectedUptimeS: [1, 2, 3], edits: BeatEdits(removed: [2], added: [2.4]),
+                                  updatedAt: Date(timeIntervalSince1970: 1_800_000_000))
+        try store.saveBeatAnnotations(ann, id: "A")
+        XCTAssertEqual(store.loadBeatAnnotations(id: "A"), ann)
+        XCTAssertEqual(ann.finalBeatsUptimeS, [1, 2.4, 3])
+        XCTAssertTrue(try store.load(id: "A").exportURLs.map(\.lastPathComponent).contains("beats.json"))
+        store.deleteBeatAnnotations(id: "A")
+        XCTAssertNil(store.loadBeatAnnotations(id: "A"))
     }
 }

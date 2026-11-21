@@ -15,9 +15,9 @@ Avoimen lähdekoodin iOS-tutkimussovellus, jolla selvitetään, pystyykö koiran
 | Vaihe | Sisältö | Tila |
 |---|---|---|
 | 1 | Raakasignaalin tallennus, reaaliaikainen näyttö, paikallinen tallennus, CSV/WAV-vienti | **Toteutettu ja käytössä iPhone 16e:llä.** |
-| 2 | Signaalinkäsittely (suodattimet, huippujen tunnistus, lyöntivälit, laatu) | Ydinkirjasto ja testit toteutettu. **Ei vielä kytketty käyttöliittymään.** Sykettä ei näytetä. |
+| 2 | Signaalinkäsittely (suodattimet, huippujen tunnistus, lyöntivälit, laatu) | Toteutettu ja testattu. Toimii sovelluksessa tallennetuille istunnoille (kokeellinen lyöntianalyysi). Säädetty toistaiseksi vain synteettisellä datalla. |
 | 3 | Analyysi (syke, lyöntivälisarja, RMSSD/SDNN, hengitys) | Osittain: lyöntivälitilastot ovat olemassa luotettavuustarkistuksen takana. Hengityksen arviointia ei ole aloitettu. |
-| 4 | Analyysinäkymät | Osittain: istuntonäkymä näyttää raa'an ja kaistanpäästösuodatetun signaalin. |
+| 4 | Analyysinäkymät | Osittain: lyöntianalyysi (lyöntiehdokkaat, lyöntivälit, luotettavuusarvio ja käsikorjaukset) sekä raaka ja suodatettu signaali. Tallennuksen aikana sykettä ei näytetä. |
 | 5 | Validointi | Synteettiset skenaariot, pisteytys tunnettuja lyöntiaikoja vastaan, Python-analyysi, ensimmäiset oikeat tallennukset (alla). Vertailumittaukseen perustuvaa validointia ei vielä ole. |
 
 ## Kuvakaappaukset
@@ -26,7 +26,11 @@ Avoimen lähdekoodin iOS-tutkimussovellus, jolla selvitetään, pystyykö koiran
 |---|---|---|
 | <img src="docs/images/app-sessions.png" width="250" alt="Tallennettujen istuntojen lista näytteenottotaajuuksineen"> | <img src="docs/images/app-detail.png" width="250" alt="Istunnon tiedot ja näytteenoton tilastot"> | <img src="docs/images/app-signals.png" width="250" alt="Koiratallennuksen kiihtyvyyssignaali: yleiskuva ja zoomattu ikkuna"> |
 
-Kuvat on otettu iOS-simulaattorista, ja niissä näkyvät iPhonesta kopioidut oikeat tallennukset.
+| Lyöntianalyysi, ihmisen rintakehä | Lyöntianalyysi, koira |
+|---|---|
+| <img src="docs/images/app-beats-human.png" width="250" alt="Ihmisen rintakehätallennuksen lyöntianalyysi: 74 minuutissa, lyöntimerkit jokaisessa värähtelypurskeessa"> | <img src="docs/images/app-beats-dog.png" width="250" alt="Koiratallennuksen lyöntianalyysi: riittämätön luotettavuus ja syyt listattuina"> |
+
+Kuvat on otettu iOS-simulaattorista, ja niissä näkyvät iPhonesta kopioidut oikeat tallennukset. Ihmisen tallennukselle sovellus antaa sykkeen. Koiran tallennukselle se ilmoittaa **riittämättömän luotettavuuden** syineen eikä anna lukua.
 
 ## Alustavat tulokset (21.11.2026)
 
@@ -87,6 +91,11 @@ Kynän napautus pöytään molempien anturien tallentamana, yhteisellä aikajana
 - Stop- ja Cancel-painikkeita pitää **painaa yhden sekunnin ajan**, jotta puhelinta rintakehälle asetettaessa tallennus ei pääty vahingossa.
 - Tallentaa jokaisen istunnon paikallisesti ja vie sen CSV-muodossa (liike), WAV-muodossa (ääni) ja `metadata.json`-tiedostona jakovalikon tai Tiedostot-sovelluksen kautta.
 - Listaa aiemmat istunnot näytteenoton diagnostiikkoineen. Jokaista istuntoa voi tarkastella raakana tai kaistanpäästösuodatettuna aaltomuotona zoomattavalla ikkunalla.
+- **Lyöntianalyysi (kokeellinen)** jokaiselle tallennetulle istunnolle:
+  - lyöntiehdokkaat rintakehän 5–30 Hz:n värähtelystä jokaiselta akselilta, ja luotettavin akseli valitaan automaattisesti
+  - lyöntimerkit aaltomuodossa ja lyöntivälikaavio
+  - syke, keskihajonta ja RMSSD näytetään **vain, kun luotettavuustarkistukset menevät läpi**; muuten näytetään "riittämätön luotettavuus" syineen
+  - aaltomuotoa napauttamalla voi hylätä lyönnin tai lisätä uuden lähimpään värähtelyhuippuun. Korjaukset tallentuvat istuntokansioon tiedostoon `beats.json` ja lähtevät mukaan vientiin.
 - Ei käyttäjätilejä, analytiikkaa, verkkoyhteyksiä eikä kolmannen osapuolen SDK:ita.
 
 ## Vaatimukset
@@ -145,6 +154,7 @@ Jokainen istunto on kansio `Documents/Sessions/<id>/`, joka näkyy myös Tiedost
 | `accelerometer.csv` | `index,t_rel_s,t_uptime_s,received_uptime_s,x_g,y_g,z_g` |
 | `gyroscope.csv` | `index,t_rel_s,t_uptime_s,received_uptime_s,x_rad_s,y_rad_s,z_rad_s` |
 | `audio.wav` | Yleensä mono, 32-bittinen liukuluku-PCM laitteiston taajuudella, rajattu tallennusikkunaan. |
+| `beats.json` | Vain käsikorjausten jälkeen: analyysin akseli, automaattisesti tunnistetut lyönnit sekä hylätyt ja lisätyt lyönnit (käynnistyksestä laskettuina sekunteina). |
 
 - `t_uptime_s` on anturin aikaleima laitteen monotonisella käynnistyksestä laskettavalla kellolla.
 - `t_rel_s = t_uptime_s − referenceUptimeS`, eli 0 on tallennuksen alku.

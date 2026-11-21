@@ -64,6 +64,8 @@ struct SessionDetailView: View {
                     ForEach(m.notes, id: \.self) { Text($0).font(.footnote) }
                 }
             }
+            BeatAnalysisSection(session: s, store: model.store)
+                .id("beats")
             if let a = m.accelerometer { MotionStreamSection(title: "Accelerometer", info: a, requested: m.requestedMotionRateHz) }
             if let g = m.gyroscope { MotionStreamSection(title: "Gyroscope", info: g, requested: m.requestedMotionRateHz) }
             if let au = m.audio { AudioSection(info: au, referenceUptime: m.referenceUptimeS) }
@@ -94,10 +96,10 @@ struct SessionDetailView: View {
         }
         .task {
             #if DEBUG
-            // DEBUG-only: `-CCScrollToSignals` for Simulator screenshots.
-            if ProcessInfo.processInfo.arguments.contains("-CCScrollToSignals") {
-                try? await Task.sleep(for: .milliseconds(500))
-                proxy.scrollTo("signals", anchor: .top)
+            // DEBUG-only: `-CCScrollTo beats|signals` for Simulator screenshots.
+            if let target = UserDefaults.standard.string(forKey: "CCScrollTo") {
+                try? await Task.sleep(for: .milliseconds(800))
+                proxy.scrollTo(target, anchor: .top)
             }
             #endif
         }

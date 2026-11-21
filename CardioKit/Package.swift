@@ -25,14 +25,14 @@ let package = Package(
     targets: [
         .target(name: "CardioCore"),
         .target(name: "SignalProcessing", dependencies: ["CardioCore"]),
-        .target(name: "Storage", dependencies: ["CardioCore"]),
+        .target(name: "Storage", dependencies: ["CardioCore", "SignalProcessing"]),
         .target(name: "Acquisition", dependencies: ["CardioCore", "Storage"]),
         .target(name: "SyntheticData", dependencies: ["CardioCore"]),
         .executableTarget(name: "cardio-synth", dependencies: ["CardioCore", "Storage", "SyntheticData"]),
 
         .testTarget(name: "CardioCoreTests", dependencies: ["CardioCore"]),
-        .testTarget(name: "SignalProcessingTests", dependencies: ["SignalProcessing", "CardioCore"]),
-        .testTarget(name: "StorageTests", dependencies: ["Storage", "CardioCore"]),
+        .testTarget(name: "SignalProcessingTests", dependencies: ["SignalProcessing", "CardioCore", "SyntheticData"]),
+        .testTarget(name: "StorageTests", dependencies: ["Storage", "CardioCore", "SignalProcessing"]),
         .testTarget(name: "AcquisitionTests", dependencies: ["Acquisition", "Storage", "CardioCore"]),
         .testTarget(name: "ValidationTests", dependencies: ["SignalProcessing", "SyntheticData", "CardioCore"]),
     ],
