@@ -104,9 +104,9 @@ struct RecordView: View {
                 .buttonStyle(.bordered)
                 recordButton
             case .countdown:
-                stopButton(title: "Cancel")
+                HoldToStopButton(title: "Hold to cancel") { session.stop() }
             case .recording:
-                stopButton(title: "Stop")
+                HoldToStopButton(title: "Hold to stop") { session.stop() }
             case .saving:
                 ProgressView("Saving…").frame(maxWidth: .infinity)
             }
@@ -123,15 +123,6 @@ struct RecordView: View {
         .buttonStyle(.borderedProminent)
         .tint(.red)
         .disabled(!session.isMotionAvailable)
-    }
-
-    private func stopButton(title: String) -> some View {
-        Button(role: .destructive) {
-            session.stop()
-        } label: {
-            Label(title, systemImage: "stop.circle").frame(maxWidth: .infinity)
-        }
-        .buttonStyle(.borderedProminent)
     }
 
     /// Requests microphone permission first if audio is enabled and permission is undetermined.
@@ -174,6 +165,43 @@ struct RecordView: View {
         }
         .padding(10)
         .background(color.opacity(0.12), in: RoundedRectangle(cornerRadius: 8))
+    }
+}
+
+/// Stop control that must be held for one second.
+///
+/// During a measurement the phone lies on a chest (often screen down), so a plain button is
+/// easily pressed by accident: the first real chest recording was ended that way.
+private struct HoldToStopButton: View {
+    let title: String
+    let action: () -> Void
+    @State private var pressing = false
+
+    private static let holdS = 1.0
+
+    var body: some View {
+        ZStack(alignment: .leading) {
+            RoundedRectangle(cornerRadius: 12).fill(Color.red.opacity(0.25))
+            GeometryReader { geo in
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color.red)
+                    .frame(width: pressing ? geo.size.width : 0)
+                    .animation(pressing ? .linear(duration: Self.holdS) : .easeOut(duration: 0.15), value: pressing)
+            }
+            Label(title, systemImage: "stop.circle")
+                .font(.headline)
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity)
+        }
+        .frame(height: 50)
+        .contentShape(Rectangle())
+        .onLongPressGesture(minimumDuration: Self.holdS, maximumDistance: 30) {
+            action()
+        } onPressingChanged: { pressing = $0 }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(title)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityAction { action() }
     }
 }
 

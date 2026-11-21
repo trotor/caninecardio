@@ -69,3 +69,17 @@ If no recording shows this, the outcome is reported as negative, and heartbeat d
 - Mechanical intervals differ from R-R intervals by the beat-to-beat change in electromechanical delay. Even with perfect detection, mechanical intervals are not R-R intervals.
 - Agreement on calm, healthy dogs at rest does not carry over to dogs that are moving, panting or ill.
 - No result from this project supports diagnostic use.
+
+## Results log
+
+### 2026-11-21: Stage 1 on an iPhone 16e (iPhone17,5, iOS 27.2.1)
+
+1. **Phone at rest on a table.** Noise floor about 0.45 mg RMS in 5–30 Hz. Clock assumptions hold. Details are in SYNCHRONIZATION.md.
+2. **Tap test.** Motion lags audio by about 5 ms at onset (5 usable taps). Details are in SYNCHRONIZATION.md.
+3. **Human chest, positive control.** One adult lying supine, two recordings: 23 s with the phone screen down and 45 s with it screen up, both mostly breath-holding. No reference pulse was recorded.
+   - The 5–30 Hz band shows a burst every cardiac cycle, with peaks of about 5–10 mg, 10–20× the on-table noise floor. Each burst has two parts (S1/S2-like).
+   - The envelope autocorrelation was 0.6–0.85 in 8 s windows, at periods of 0.67–0.98 s, which is 61–90/min.
+   - Candidate intervals, from a quick offline detector, were 650–1000 ms. They changed smoothly during the breath-hold, with occasional double detections.
+   - Breathing moved the phone by tens of mg in the 0.1–1 Hz band, and handling at the end of the recording reached hundreds of mg.
+   - Conclusion: the phone and app capture a human seismocardiogram clearly. **The rate has not yet been checked against a reference**, so the next human recording needs a simultaneous pulse count or a chest strap.
+   - Usability finding: the first recording was ended accidentally by touching Stop while turning the phone screen down. Stop and Cancel now need a 1 s hold.
